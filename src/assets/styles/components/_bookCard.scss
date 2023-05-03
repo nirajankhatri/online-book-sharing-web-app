@@ -1,0 +1,28 @@
+.book-card {
+  width: 150px;
+  // height: 300px;
+
+  a.book-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    text-decoration: none;
+
+    .card-image-container {
+      width: 150px;
+      // height: 260px;
+    }
+  
+    .card-title {
+      color: var(--color-brand);
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .card-price {
+      color: var(--color-primary);
+    }
+  }
+
+
+}
