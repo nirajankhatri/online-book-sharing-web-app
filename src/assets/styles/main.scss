@@ -1,5 +1,11 @@
 @import "./base/resets";
 @import "./base/typography";
 @import "./abstracts/variables";
+@import "../styles/abstracts/mixins";
 @import "./components/bookCard";
+@import "./components/cardGlider";
+@import "./components/seeMoreBtn";
+@import "./components/sidebarToggleBtn";
+@import "./components/ctaButton";
+@import "./layout/navbar";
 

@@ -1,0 +1,13 @@
+.CTAButton {
+  @include btn;
+  background-color: var(--color-secondary-light);
+  color: var(--color-brand);
+  text-transform: capitalize;
+  font-size: 1rem;
+  padding: 0.25em 1em;
+  cursor: pointer;
+
+  &:hover {
+    filter: saturate(200%);
+  }
+}
