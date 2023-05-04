@@ -1,12 +1,12 @@
-import BookCard from "./components/BookCard"
+import BookCard from "./components/BookCard";
+import CardGlider from "./containers/books/glider/CardGlider";
 
 function App() {
-
   return (
-    <div className='App'>
-      <BookCard imgUrl="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1590806892i/53642699.jpg" title="The Mountain Is You" price="295" />
+    <div className="App">
+      <CardGlider />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
