@@ -1,7 +1,11 @@
 import React from "react";
 
-const CTAButton = ({ label, onClickHandler, classname = "" }) => {
-  return <button className={`btn CTAButton ${classname}`}  onClick={onClickHandler}>{label}</button>;
+const CTAButton = ({ label, onClick, classname = "" }) => {
+  return (
+    <button className={`btn CTAButton ${classname}`} onClick={onClick}>
+      {label}
+    </button>
+  );
 };
 
 export default CTAButton;

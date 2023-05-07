@@ -1,16 +1,16 @@
-import BookCard from "./components/BookCard";
-import HeroSection from "./components/HeroSection";
+import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import AddBookForm from "./containers/books/addBookForm/AddBookForm";
-import CardGlider from "./containers/books/glider/CardGlider";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <HeroSection />
-      <CardGlider />
-      <AddBookForm />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/addbook" element={<AddBookForm />} />
+      </Routes>
     </div>
   );
 }

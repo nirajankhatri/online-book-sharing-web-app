@@ -7,6 +7,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { storage } from "../../../firebase-config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import uuid from "react-uuid";
+import InputField from "../../../components/InputField";
 
 const AddBookForm = () => {
   const [formValues, setFormValues] = useState({});
@@ -30,6 +31,7 @@ const AddBookForm = () => {
 
     return setFormValues({ ...formValues, imgUrl: url });
   };
+
   const addBook = async (e) => {
     e.preventDefault();
     await imageUploadHandler();
@@ -49,30 +51,31 @@ const AddBookForm = () => {
   return (
     <div className="form-container" onSubmit={addBook}>
       <form className="form form-add-book">
-        <input
+        <InputField
           type="text"
           placeholder="title"
           name="title"
           value={formValues.title || ""}
           onChange={onChangeHandler}
         />
-        <input
+        <InputField
           type="text"
           placeholder="author"
           name="author"
           value={formValues.author || ""}
           onChange={onChangeHandler}
         />
-        <input
+        <InputField
           type="text"
           placeholder="price"
           name="price"
           value={formValues.price || ""}
           onChange={onChangeHandler}
         />
-        <input
+        <InputField
           type="file"
-          name="imageToUpload"
+          name="image"
+          value={imageToUpload}
           onChange={(e) => {
             setImageToUpload(e.target.files[0]);
           }}
