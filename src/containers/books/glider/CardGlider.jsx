@@ -6,7 +6,6 @@ import BookCard from "../../../components/BookCard";
 import { db } from "../../../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
-// import { books } from "../../../assets/json/books.json";
 import uuid from "react-uuid";
 import SeeMoreBtn from "../../../components/SeeMoreBtn";
 
