@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Glider from "react-glider";
 import "glider-js/glider.min.css";
 import BookCard from "../../../components/BookCard";
 
-import { books } from "../../../assets/json/books.json";
+import { db } from "../../../firebase-config";
+import { collection, getDocs } from "firebase/firestore";
+
+// import { books } from "../../../assets/json/books.json";
 import uuid from "react-uuid";
 import SeeMoreBtn from "../../../components/SeeMoreBtn";
 
 const CardGlider = () => {
+  const [books, setBooks] = useState([]);
+  const booksCollectionRef = collection(db, "books");
+  useEffect(() => {
+    const getBooks = async () => {
+      const data = await getDocs(booksCollectionRef);
+      setBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    getBooks();
+  }, []);
+
   const bookList = books.map((book) => (
     <BookCard
       key={uuid()}
