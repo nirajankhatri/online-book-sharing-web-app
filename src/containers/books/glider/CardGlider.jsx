@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Glider from "react-glider";
-import "glider-js/glider.min.css";
-import BookCard from "../../../components/BookCard";
 
-import { db } from "../../../firebase-config";
+import Glider from "react-glider";
+import BookCard from "../../../components/BookCard";
+import SeeMoreBtn from "../../../components/SeeMoreBtn";
+
+import "glider-js/glider.min.css";
+
+import { db } from "../../../configs/firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 
 import uuid from "react-uuid";
-import SeeMoreBtn from "../../../components/SeeMoreBtn";
 
 const CardGlider = () => {
   const [books, setBooks] = useState([]);

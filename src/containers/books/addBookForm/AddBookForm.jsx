@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
+
 import CTAButton from "../../../components/CTAButton";
-
-import { db } from "../../../firebase-config";
-import { collection, addDoc } from "firebase/firestore";
-
-import { storage } from "../../../firebase-config";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import uuid from "react-uuid";
 import InputField from "../../../components/InputField";
 import FileInputField from "../../../components/FileInputField";
 import BackButton from "../../../components/BackButton";
+
+import { db, storage } from "../../../configs/firebase-config";
+import { collection, addDoc } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+import uuid from "react-uuid";
+
+
 
 const AddBookForm = () => {
   const [formValues, setFormValues] = useState({});
