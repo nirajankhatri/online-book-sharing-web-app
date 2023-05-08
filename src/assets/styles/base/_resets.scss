@@ -1,4 +1,6 @@
-* {
+*,
+::after,
+::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,5 +17,5 @@ img {
   margin: 0 auto;
   padding: 0 8px;
   border: solid 1px black;
-  background-color:  hsl(0, 0%, 94%);
+  background-color: hsl(0, 0%, 94%);
 }

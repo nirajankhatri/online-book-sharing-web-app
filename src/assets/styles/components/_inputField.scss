@@ -5,15 +5,19 @@
 
   label {
     text-transform: capitalize;
+    font-size: 1.025rem;
   }
 
   input[type=text] {
     padding: 8px 8px;
     color: var(--color-brand-dark);
     font-size: 1.025rem;
-  } 
+    border-radius: 5px;
+    border: 1px solid var(--color-brand);
 
-  input[type=file] {
-    display: none;
-  }
+    &:focus {
+      outline: none;
+      border-bottom: 4px solid var(--color-brand);
+    }
+  } 
 }

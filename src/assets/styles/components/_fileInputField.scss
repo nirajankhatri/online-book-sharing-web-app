@@ -1,0 +1,13 @@
+.inputField-group {
+  input[type="file"] {
+    cursor: pointer;
+
+    &::file-selector-button {
+      padding: 8px;
+      border-radius: 5px;
+      color: var(--color-brand-dark);
+      font-size: 1.025rem;
+      border: 1px solid var(--color-brand);
+    }
+  }
+}

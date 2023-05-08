@@ -8,6 +8,8 @@ import { storage } from "../../../firebase-config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import uuid from "react-uuid";
 import InputField from "../../../components/InputField";
+import FileInputField from "../../../components/FileInputField";
+import BackButton from "../../../components/BackButton";
 
 const AddBookForm = () => {
   const [formValues, setFormValues] = useState({});
@@ -25,68 +27,66 @@ const AddBookForm = () => {
 
   const imageUploadHandler = async () => {
     if (imageToUpload == null) return;
+
+    // else
     const imageRef = ref(storage, `images/${imageToUpload.name + uuid()}`);
     await uploadBytes(imageRef, imageToUpload);
     const url = await getDownloadURL(imageRef);
-
-    return setFormValues({ ...formValues, imgUrl: url });
+    setFormValues({ ...formValues, imgUrl: url });
   };
 
-  const addBook = async (e) => {
+  const addBook = (e) => {
     e.preventDefault();
-    await imageUploadHandler();
+    imageUploadHandler();
   };
 
-  useEffect(
-    () => async () => {
-      if (formValues.imgUrl) {
-        await addDoc(booksCollectionRef, formValues);
+  useEffect(() => {
+    if (formValues.imgUrl) {
+      addDoc(booksCollectionRef, formValues).then(() => {
         setFormValues({});
         setImageToUpload(null);
-      }
-    },
-    [formValues.imgUrl]
-  );
+        document.getElementsByClassName("form-add-book")[0].reset();
+      });
+    }
+  }, [formValues.imgUrl]);
 
   return (
-    <div className="form-container" onSubmit={addBook}>
-      <form className="form form-add-book">
-        <InputField
-          type="text"
-          placeholder="title"
-          name="title"
-          value={formValues.title || ""}
-          onChange={onChangeHandler}
-        />
-        <InputField
-          type="text"
-          placeholder="author"
-          name="author"
-          value={formValues.author || ""}
-          onChange={onChangeHandler}
-        />
-        <InputField
-          type="text"
-          placeholder="price"
-          name="price"
-          value={formValues.price || ""}
-          onChange={onChangeHandler}
-        />
-        <InputField
-          type="file"
-          name="image"
-          value={imageToUpload}
-          onChange={(e) => {
-            setImageToUpload(e.target.files[0]);
-          }}
-        />
-        <CTAButton
-          label="Submit"
-          classname="btn-add-book"
-          onClickHandler={addBook}
-        />
-      </form>
-    </div>
+    <>
+      <BackButton />
+      <div className="form-container">
+        <form className="form form-add-book" onSubmit={addBook}>
+          <InputField
+            type="text"
+            placeholder="title"
+            name="title"
+            value={formValues.title || ""}
+            onChange={onChangeHandler}
+          />
+          <InputField
+            type="text"
+            placeholder="author"
+            name="author"
+            value={formValues.author || ""}
+            onChange={onChangeHandler}
+          />
+          <InputField
+            type="text"
+            placeholder="price"
+            name="price"
+            value={formValues.price || ""}
+            onChange={onChangeHandler}
+          />
+          <FileInputField
+            name="image"
+            accept="image/*"
+            onChange={(e) => {
+              setImageToUpload(e.target.files[0]);
+            }}
+          />
+          <CTAButton label="Submit" classname="btn-add-book" />
+        </form>
+      </div>
+    </>
   );
 };
 

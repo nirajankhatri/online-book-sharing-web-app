@@ -1,6 +1,6 @@
 import React from "react";
 
-const FileInputField = ({ accept, name, onChange, value }) => {
+const FileInputField = ({ accept, name, onChange }) => {
   return (
     <div className="inputField-group">
       <label htmlFor={name}>{name}</label>
@@ -10,7 +10,6 @@ const FileInputField = ({ accept, name, onChange, value }) => {
         accept={accept}
         name={name}
         onChange={onChange}
-        value={value}
       />
     </div>
   );

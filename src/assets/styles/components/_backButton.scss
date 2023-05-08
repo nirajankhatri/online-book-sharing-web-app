@@ -1,0 +1,15 @@
+.backBtn {
+  text-decoration: none;
+  color: var(--color-brand-dark);
+  cursor: pointer;
+  border: none;
+  width: fit-content;
+  background: none;
+  transition: all 0.1s;
+  margin-top: 12px;
+
+
+  &:hover {
+    transform: translateX(-2px);
+  }
+}
