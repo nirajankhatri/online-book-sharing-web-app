@@ -1,0 +1,19 @@
+.inputField-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  label {
+    text-transform: capitalize;
+  }
+
+  input[type=text] {
+    padding: 8px 8px;
+    color: var(--color-brand-dark);
+    font-size: 1.025rem;
+  } 
+
+  input[type=file] {
+    display: none;
+  }
+}
