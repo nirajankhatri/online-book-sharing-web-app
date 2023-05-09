@@ -5,19 +5,18 @@ import InputField from "../../../components/InputField";
 import FileInputField from "../../../components/FileInputField";
 import BackButton from "../../../components/BackButton";
 
-import { db, storage } from "../../../configs/firebase-config";
-import { collection, addDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+// import { db, storage } from "../../../configs/firebase-config";
+// import { collection, addDoc } from "firebase/firestore";
+// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-import uuid from "react-uuid";
-
-
+// import uuid from "react-uuid";
+import { useDispatch } from "react-redux";
+import { addBook } from "../thunks";
 
 const AddBookForm = () => {
   const [formValues, setFormValues] = useState({});
-  const [imageToUpload, setImageToUpload] = useState(null);
 
-  const booksCollectionRef = collection(db, "books");
+  const dispatch = useDispatch();
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -27,36 +26,25 @@ const AddBookForm = () => {
     });
   };
 
-  const imageUploadHandler = async () => {
-    if (imageToUpload == null) return;
-
-    // else
-    const imageRef = ref(storage, `images/${imageToUpload.name + uuid()}`);
-    await uploadBytes(imageRef, imageToUpload);
-    const url = await getDownloadURL(imageRef);
-    setFormValues({ ...formValues, imgUrl: url });
+  const onImageChangeHandler = (e) => {
+    const image = e.target.files[0];
+    setFormValues({
+      ...formValues,
+      image,
+    });
   };
 
-  const addBook = (e) => {
+  const onSubmitHandler = (e) => {
     e.preventDefault();
-    imageUploadHandler();
-  };
 
-  useEffect(() => {
-    if (formValues.imgUrl) {
-      addDoc(booksCollectionRef, formValues).then(() => {
-        setFormValues({});
-        setImageToUpload(null);
-        document.getElementsByClassName("form-add-book")[0].reset();
-      });
-    }
-  }, [formValues.imgUrl]);
+    dispatch(addBook(formValues));
+  };
 
   return (
     <>
       <BackButton />
       <div className="form-container">
-        <form className="form form-add-book" onSubmit={addBook}>
+        <form className="form form-add-book" onSubmit={onSubmitHandler}>
           <InputField
             type="text"
             placeholder="title"
@@ -81,9 +69,7 @@ const AddBookForm = () => {
           <FileInputField
             name="image"
             accept="image/*"
-            onChange={(e) => {
-              setImageToUpload(e.target.files[0]);
-            }}
+            onChange={(e) => onImageChangeHandler(e)}
           />
           <CTAButton label="Submit" classname="btn-add-book" />
         </form>

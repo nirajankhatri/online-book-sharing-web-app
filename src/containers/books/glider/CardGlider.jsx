@@ -6,9 +6,6 @@ import SeeMoreBtn from "../../../components/SeeMoreBtn";
 
 import "glider-js/glider.min.css";
 
-import { db } from "../../../configs/firebase-config";
-import { collection, getDocs } from "firebase/firestore";
-
 import uuid from "react-uuid";
 import { fetchBooks } from "../thunks";
 import { useDispatch, useSelector } from "react-redux";
