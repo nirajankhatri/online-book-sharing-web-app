@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,5 +18,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Add database and storage to the app
-export const db = getFirestore(app)
+export const db = getFirestore(app);
 export const storage = getStorage(app);
+export const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+export const signInWithGoogle = () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};

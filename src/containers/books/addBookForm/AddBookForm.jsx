@@ -5,19 +5,18 @@ import InputField from "../../../components/InputField";
 import FileInputField from "../../../components/FileInputField";
 import BackButton from "../../../components/BackButton";
 
-// import { db, storage } from "../../../configs/firebase-config";
-// import { collection, addDoc } from "firebase/firestore";
-// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
-// import uuid from "react-uuid";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addBook } from "../thunks";
+import Spinner from "../../../components/Spinner";
+import { useNavigate } from "react-router-dom";
 
 const AddBookForm = () => {
   const [formValues, setFormValues] = useState({});
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  let { loading, book, error } = useSelector((state) => state.addedBook);
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -36,14 +35,22 @@ const AddBookForm = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-
     dispatch(addBook(formValues));
   };
+
+  useEffect(() => {
+    if (Object.entries(book).length > 0) {
+      document.getElementsByClassName("form-add-book")[0].requestFullscreen();
+      setFormValues({});
+      navigate("/");
+    }
+  }, [book]);
 
   return (
     <>
       <BackButton />
       <div className="form-container">
+        {loading && <Spinner />}
         <form className="form form-add-book" onSubmit={onSubmitHandler}>
           <InputField
             type="text"

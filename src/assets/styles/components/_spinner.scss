@@ -1,4 +1,12 @@
-.lds-ellipsis {
+.lds-ellipsis-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #0000007a;
+
+  .lds-ellipsis {
     display: inline-block;
     position: absolute;
     width: 80px;
@@ -57,4 +65,4 @@
       transform: translate(24px, 0);
     }
   }
-  
+}

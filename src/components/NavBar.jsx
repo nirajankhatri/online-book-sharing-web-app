@@ -1,12 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { signInWithGoogle } from "../configs/firebase-config";
 import CTAButton from "./CTAButton";
 import SideBarToggleBtn from "./SideBarToggleBtn";
 
 const NavBar = () => {
-  const onLoginHandler = () => {
-    
-  }
   return (
     <div className="navbar">
       <div className="nav-left">
@@ -22,7 +20,7 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="nav-right btns">
-        <CTAButton onClick={onLoginHandler} label="login" />
+        <CTAButton onClick={signInWithGoogle} label="login" />
       </div>
     </div>
   );
