@@ -1,4 +1,7 @@
 .glider-wrapper {
+  min-height: 100px;
+  position: relative;
+
   .glider-btns {
     display: flex;
     justify-content: flex-end;
