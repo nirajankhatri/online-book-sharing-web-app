@@ -2,7 +2,13 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { Navigate } from "react-router-dom";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -27,8 +33,22 @@ export const signInWithGoogle = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       console.log(result);
+      const name = result.user.displayName;
+      const email = result.user.email;
+      const photoUrl = result.user.photoURL;
+
+      localStorage.setItem(
+        "authenticatedUser",
+        JSON.stringify({ name, email, photoUrl })
+      );
     })
     .catch((error) => {
       console.log(error);
     });
+};
+
+export const signOutFromGoogle = () => {
+  signOut(auth).then(() => {
+    localStorage.removeItem("authenticatedUser");
+  });
 };

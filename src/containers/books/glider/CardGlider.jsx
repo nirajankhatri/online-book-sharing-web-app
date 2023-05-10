@@ -23,6 +23,7 @@ const CardGlider = () => {
   const bookList = books.map((book) => (
     <BookCard
       key={uuid()}
+      id={book?.id}
       imgUrl={book?.imgUrl}
       title={book?.title}
       price={book?.price}
@@ -54,7 +55,9 @@ const CardGlider = () => {
             {bookList}
           </Glider>
         </>
-      ) : ""}
+      ) : (
+        ""
+      )}
     </div>
   );
 };

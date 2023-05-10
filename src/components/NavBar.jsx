@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { signInWithGoogle } from "../configs/firebase-config";
+import {
+  signInWithGoogle,
+  signOutFromGoogle,
+} from "../configs/firebase-config";
 import CTAButton from "./CTAButton";
 import SideBarToggleBtn from "./SideBarToggleBtn";
+import { userContext } from "../context/userContext";
+// import { useDispatch } from "react-redux";
+// import { loginSuccess, startLoading } from "../containers/users/authSlice";
 
 const NavBar = () => {
+  const userInfo = useContext(userContext);
+
+  // const dispatch = useDispatch()
+
+  // const onLoginHandler = () => {
+  //   dispatch(startLoading());
+  //   signInWithGoogle().then(() => {
+  //     dispatch(loginSuccess());
+  //   })
+  // }
+
   return (
     <div className="navbar">
       <div className="nav-left">
@@ -20,7 +37,10 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="nav-right btns">
-        <CTAButton onClick={signInWithGoogle} label="login" />
+        <CTAButton
+          onClick={!userInfo ? signInWithGoogle : signOutFromGoogle}
+          label={!userInfo ? "login" : "logout"}
+        />
       </div>
     </div>
   );
