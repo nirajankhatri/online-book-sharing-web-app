@@ -5,6 +5,7 @@ import LandingPage from "./pages/LandingPage";
 
 import { userContext } from "./context/userContext";
 import BookDetails from "./containers/books/bookDetails/BookDetails";
+import BookDetailsPage from "./pages/BookDetailsPage";
 // import { useSelector } from "react-redux";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/addbook" element={<AddBookForm />} />
-        <Route path="/book/:id" element={<BookDetails />} />
+        <Route path="/book/:id" element={<BookDetailsPage />} />
       </Routes>
     </div>
     // </userContext.Provider>
