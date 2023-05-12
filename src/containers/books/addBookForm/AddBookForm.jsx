@@ -6,7 +6,7 @@ import FileInputField from "../../../components/FileInputField";
 import BackButton from "../../../components/BackButton";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addBook } from "../thunks";
+import { addBook } from "../booksThunks";
 import Spinner from "../../../components/Spinner";
 import { useNavigate } from "react-router-dom";
 

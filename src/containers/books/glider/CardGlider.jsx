@@ -7,7 +7,7 @@ import SeeMoreBtn from "../../../components/SeeMoreBtn";
 import "glider-js/glider.min.css";
 
 import uuid from "react-uuid";
-import { fetchBooks } from "../thunks";
+import { fetchBooks } from "../booksThunks";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../components/Spinner";
 

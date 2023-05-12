@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchBooks } from "./thunks";
+import { fetchBookDetails } from "./bookThunks";
 
-const booksSlice = createSlice({
-  name: "books",
+const bookSlice = createSlice({
+  name: "book",
   initialState: {
     loading: false,
     book: {},
@@ -11,17 +11,17 @@ const booksSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchBooks.pending, (state) => {
+      .addCase(fetchBookDetails.pending, (state) => {
         state.loading = true;
         state.book = {};
         state.error = false;
       })
-      .addCase(fetchBooks.fulfilled, (state, action) => {
+      .addCase(fetchBookDetails.fulfilled, (state, action) => {
         state.loading = false;
         state.book = action.payload;
         state.error = false;
       })
-      .addCase(fetchBooks.rejected, (state, action) => {
+      .addCase(fetchBookDetails.rejected, (state, action) => {
         state.loading = false;
         state.book = {};
         state.error = action.payload;
@@ -29,4 +29,4 @@ const booksSlice = createSlice({
   },
 });
 
-export default booksSlice.reducer;
+export default bookSlice.reducer;
