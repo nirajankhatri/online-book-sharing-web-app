@@ -14,6 +14,7 @@ const HeroSection = () => {
       <img src={heroImg} alt="books" />
       <div className="hero-section-info">
         <div className="hero-statement">
+          <div className="slogan">Share<mark>.Explore.</mark>Connect</div>
           <span>Join our community of book lovers and enjoy the thrill.</span>
         </div>
         <CTAButton
