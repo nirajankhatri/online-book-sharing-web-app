@@ -11,7 +11,7 @@ import { fetchBooks } from "../booksThunks";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../components/Spinner";
 
-const CardGlider = () => {
+const CardGlider = ({ bookId }) => {
   let { loading, books, error } = useSelector((state) => state.books);
 
   const dispatch = useDispatch();
@@ -20,45 +20,38 @@ const CardGlider = () => {
     dispatch(fetchBooks());
   }, []);
 
-  const bookList = books.map((book) => (
-    <BookCard
-      key={uuid()}
-      id={book?.id}
-      imgUrl={book?.imgUrl}
-      title={book?.title}
-      price={book?.price}
-    />
-  ));
+  const bookList = books.map((book) => {
+    if (book?.id !== bookId) {
+      return (
+        <BookCard
+          key={uuid()}
+          id={book?.id}
+          imgUrl={book?.imgUrl}
+          title={book?.title}
+          price={book?.price}
+        />
+      );
+    } else {
+      return null;
+    }
+  });
 
   return (
-    <div className="glider-wrapper">
+    <>
       {loading && <Spinner />}
-
-      {books.length > 0 ? (
-        <>
-          <div className="glider-btns">
-            <SeeMoreBtn />
-          </div>
-          <Glider
-            draggable
-            slidesToShow={2.5}
-            slidesToScroll={1}
-            // responsive={[
-            //   {
-            //     breakpoint: 864,
-            //     settings: {
-            //       slidesToShow: 3,
-            //     },
-            //   },
-            // ]}
-          >
-            {bookList}
-          </Glider>
-        </>
-      ) : (
-        ""
-      )}
-    </div>
+      <div className="glider-wrapper">
+        {books.length > 0 ? (
+          <>
+            <div className="glider-btns">
+              <SeeMoreBtn />
+            </div>
+            <Glider draggable slidesToShow={2.5} slidesToScroll={1}>
+              {bookList}
+            </Glider>
+          </>
+        ) : null}
+      </div>
+    </>
   );
 };
 
