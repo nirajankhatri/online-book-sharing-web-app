@@ -1,5 +1,6 @@
 .btn-see-more {
   @include btn;
+  padding-inline: 0 !important;
   font-weight: 500;
   color: var(--color-secondary-1);
 }

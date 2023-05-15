@@ -4,11 +4,10 @@ a.book-card {
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  padding: 4px;
+  margin-right: 16px;
 
   .card-image-container {
     height: 75%;
-    // border: 1px solid red;
 
     img {
       width: 100%;

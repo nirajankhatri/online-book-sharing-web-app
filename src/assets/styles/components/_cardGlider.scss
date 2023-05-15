@@ -1,8 +1,9 @@
 .glider-wrapper {
   position: relative;
+  margin-block: 1rem;
 
-  .glider-btns {
+  .section-hearder {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 }

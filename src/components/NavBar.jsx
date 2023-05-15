@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   signInWithGoogle,
@@ -11,11 +11,12 @@ import Spinner from "./Spinner";
 
 const NavBar = () => {
   const dispatch = useDispatch();
+  const [showDropdown, setShowDropdown] = useState(false);
 
   let { loading, user, error } = useSelector((state) => state.authorization);
 
   if (!!!Object.entries(user).length) {
-    user = JSON.parse(localStorage.getItem("authenticatedUser"));
+    user = JSON.parse(localStorage.getItem("authenticatedUser")) || {};
   }
 
   return (
@@ -34,15 +35,39 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <div className="nav-right btns">
-          <CTAButton
-            onClick={
-              !!Object.entries(user).length
-                ? () => dispatch(signOutFromGoogle())
-                : () => dispatch(signInWithGoogle())
-            }
-            label={!!Object.entries(user).length ? "logout" : "login"}
-          />
+        <div className="nav-right">
+          {!!!Object.entries(user).length ? (
+            <CTAButton
+              onClick={() => dispatch(signInWithGoogle())}
+              label={"login"}
+            />
+          ) : (
+            <div
+              className="dropDownContainer"
+              onClick={() => setShowDropdown((prev) => !prev)}
+            >
+              <div className="dropDownBtn">
+                <div className="imageContainer">
+                  <img src={user?.photoUrl} alt="User Profile" />
+                </div>
+              </div>
+
+              <div className="dropdown">
+                <p>{user.name.substring(0, user.name.indexOf(" "))} &#10576;</p>
+
+                {showDropdown ? (
+                  <>
+                    <div className="dropdown__overlay"></div>
+                    <div className="dropDownList">
+                      <div onClick={() => dispatch(signOutFromGoogle())}>
+                        Logout
+                      </div>
+                    </div>
+                  </>
+                ) : null}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
