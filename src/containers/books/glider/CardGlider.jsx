@@ -10,6 +10,7 @@ import uuid from "react-uuid";
 import { fetchBooks } from "../booksThunks";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../../components/Spinner";
+import SectionHeader from "../../../components/SectionHeader";
 
 const CardGlider = ({ bookId }) => {
   let { loading, books, error } = useSelector((state) => state.books);
@@ -42,7 +43,8 @@ const CardGlider = ({ bookId }) => {
       <div className="glider-wrapper">
         {books.length > 0 ? (
           <>
-            <div className="glider-btns">
+            <div className="section-hearder">
+              <SectionHeader heading="Featured" />
               <SeeMoreBtn />
             </div>
             <Glider draggable slidesToShow={2.5} slidesToScroll={1}>

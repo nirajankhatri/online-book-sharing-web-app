@@ -7,6 +7,7 @@ const LandingPage = () => {
     <>
       <HeroSection />
       <CardGlider />
+      <CardGlider />
     </>
   );
 };
