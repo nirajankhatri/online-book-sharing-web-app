@@ -6,10 +6,10 @@ import CardGlider from "../containers/books/glider/CardGlider";
 const BookDetailsPage = () => {
   const { id } = useParams();
   return (
-    <>
+    <React.Fragment>
       <BookDetails bookId={id} />
       <CardGlider bookId={id} />
-    </>
+    </React.Fragment>
   );
 };
 
