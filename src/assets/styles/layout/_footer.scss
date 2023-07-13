@@ -15,12 +15,23 @@
     margin-bottom: 1rem;
 
     &-heading {
-      color: var(--color-brand);
       text-align: center;
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-family: "Mondapick", sans-serif;
+      h1 {
+        color: var(--color-brand);
+        text-transform: uppercase;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+      }
+      &-slogan {
+        height: 4em;
+        line-height: 1.5em; 
+        overflow: hidden;
+        color: var(--color-secondary-light);
+        font-size: 16px;
+        margin: 0px 10px;
+      }
     }
 
     &-text {
@@ -32,12 +43,14 @@
 
     &-page-links {
       width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
+      flex-direction: column;
+      @extend .center-div;
+      gap: 20px;
 
       a {
-        color: var(--color-secondary-1);
+        color: var(--color-secondary-light);
+        text-decoration: none;
+        cursor: pointer;
       }
     }
 
@@ -50,20 +63,21 @@
   }
 
   &__social-icons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+    @extend .center-div;
     a {
       display: inline-block;
-      margin-right: 1.5rem;
+      margin: 6px 10px 3px 10px;
       font-size: 1.5rem;
-      color: #ffffff;
+      color: var(--color-secondary-1);
       transition: all 0.2s ease-in-out;
 
       &:hover {
         color: var(--color-brand);
       }
     }
+  }
+  &__section {
+    margin: 12px 0px;
+    color: var(--color-secondary-1);
   }
 }

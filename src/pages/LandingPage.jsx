@@ -4,11 +4,11 @@ import CardGlider from "../containers/books/glider/CardGlider";
 
 const LandingPage = () => {
   return (
-    <>
+    <React.Fragment>
       <HeroSection />
       <CardGlider />
       <CardGlider />
-    </>
+    </React.Fragment>
   );
 };
 
